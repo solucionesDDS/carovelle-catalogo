@@ -681,25 +681,22 @@
             }
         }
 
-        // Script dinámico con lista de reintentos por variantes de nombre
+        // Script de respaldo robusto para imágenes
         function smartFallback(img) {
             if (!img.dataset.step) img.dataset.step = "0";
             let step = parseInt(img.dataset.step);
             let rawSrc = img.getAttribute('src');
-            let baseName = rawSrc.split('.')[0]; // nombre sin extensión
+            let baseName = rawSrc.split('.')[0];
 
             let variations = [
                 baseName + '.jpg.jpg',
-                baseName.toLowerCase() + '.jpg.jpg',
                 baseName + '.jpg',
-                baseName.toLowerCase() + '.jpg',
                 baseName + '.jpeg',
-                baseName.toLowerCase() + '.jpeg',
                 baseName + '.png',
-                baseName.toLowerCase() + '.png'
+                baseName.toLowerCase() + '.jpg.jpg',
+                baseName.toLowerCase() + '.jpg'
             ];
 
-            // Evitar loop infinito
             if (step < variations.length) {
                 img.dataset.step = (step + 1).toString();
                 img.src = variations[step];
