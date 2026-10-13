@@ -16,6 +16,7 @@
             --accent-border: #332910;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -291,7 +292,7 @@
         <span>💎 GARANTÍA CAROVELLE:</span> Perfumería 100% Original con Certificado de Autenticidad
     </div>
 
-    <div class="container">
+    <div class="container" id="catalogo">
         
         <!-- Buscador -->
         <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar perfume o marca..." onkeyup="filterPerfumes()">
@@ -821,7 +822,6 @@
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('card');
             
-            // Si el usuario escribe algo en el buscador, desactivamos la resaltación visual de botones de categoría
             let buttons = document.getElementsByClassName('btn-filter');
             for (let b of buttons) {
                 b.classList.remove('active');
@@ -838,19 +838,16 @@
         }
 
         function filterCategory(category, btn) {
-            let searchInput = document.getElementById('searchInput');
-            searchInput.value = ""; // Limpia el buscador al hacer clic en una categoría
+            document.getElementById('searchInput').value = "";
             
             let cards = document.getElementsByClassName('card');
             let buttons = document.getElementsByClassName('btn-filter');
 
-            // Cambia el estado del botón activo
             for (let b of buttons) {
                 b.classList.remove('active');
             }
             btn.classList.add('active');
 
-            // Filtra las tarjetas
             for (let card of cards) {
                 let cat = card.getAttribute('data-category');
                 let name = card.getAttribute('data-name');
@@ -863,6 +860,9 @@
                     card.style.display = "none";
                 }
             }
+
+            // Desplazamiento suave para centrar la vista en el catálogo
+            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
