@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carovelle | Parfumerie Privée</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0b0b0b;
@@ -25,7 +25,7 @@
         }
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px 20px 25px 20px;
             border-bottom: 1px solid var(--accent-border);
             background: linear-gradient(to bottom, #111, #0b0b0b);
         }
@@ -57,15 +57,40 @@
             color: var(--gold-light);
             margin-top: 10px;
         }
+
+        /* Banner de Autenticidad */
+        .guarantee-banner {
+            background: linear-gradient(90deg, #141414, #241d0b, #141414);
+            border-y: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .guarantee-banner span {
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 0 20px;
         }
+
+        /* Buscador y Filtros */
         .search-box {
             width: 100%;
-            max-width: 400px;
-            margin: 0 auto 30px auto;
+            max-width: 450px;
+            margin: 0 auto 15px auto;
             display: block;
             padding: 12px 20px;
             background: var(--card-bg);
@@ -76,6 +101,33 @@
             outline: none;
             text-align: center;
         }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+        .btn-filter {
+            background: transparent;
+            border: 1px solid var(--accent-border);
+            color: var(--text-muted);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-filter:hover, .btn-filter.active {
+            background: var(--gold-primary);
+            color: #000;
+            border-color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        /* Grid y Tarjetas */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -121,6 +173,20 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border-radius: 4px;
+        }
+        .badge-original {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            padding: 4px 8px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
         }
         .card-content {
             padding: 20px;
@@ -176,6 +242,30 @@
         .btn-whatsapp:hover {
             background-color: var(--gold-light);
         }
+
+        /* Sección de Beneficios / Confianza */
+        .trust-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .trust-item h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .trust-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         footer.main-footer {
             text-align: center;
             margin-top: 50px;
@@ -189,22 +279,38 @@
 <body>
 
     <header>
-        <img src="logo.jpg.jpeg" alt="Carovelle Logo" class="logo-img" onerror="tryLoadImage(this, ['logo.jpg', 'logo.jpeg'])">
+        <img src="logo.jpg.jpeg" alt="Carovelle Logo" class="logo-img">
         <div class="logo-title">CAROVELLE</div>
         <div class="subtitle">Parfumerie Privée</div>
         <div class="slogan">Elegancia que trasciende</div>
     </header>
 
+    <!-- BANNER DE GARANTÍA DE AUTENTICIDAD -->
+    <div class="guarantee-banner">
+        <span>💎 GARANTÍA CAROVELLE:</span> Perfumería 100% Original con Certificado de Autenticidad
+    </div>
+
     <div class="container">
+        
+        <!-- Buscador -->
         <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar perfume o marca..." onkeyup="filterPerfumes()">
+
+        <!-- Filtros Rápidos por Categoría -->
+        <div class="filter-buttons">
+            <button class="btn-filter active" onclick="filterCategory('todos', this)">Todos</button>
+            <button class="btn-filter" onclick="filterCategory('dama', this)">Dama</button>
+            <button class="btn-filter" onclick="filterCategory('caballero', this)">Caballero</button>
+            <button class="btn-filter" onclick="filterCategory('unisex', this)">Unisex</button>
+        </div>
 
         <div class="grid" id="perfumeGrid">
             
             <!-- 1 -->
-            <div class="card" data-name="lattafa bade e al oud noble blush dama">
+            <div class="card" data-name="lattafa bade e al oud noble blush dama" data-category="dama">
                 <div class="card-img-container">
                     <span class="badge">Dama</span>
-                    <img src="Lattafa.jpg.jpg" alt="Bade'e Al Oud" onerror="tryLoadImage(this, ['Lattafa.jpg', 'lattafa.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Lattafa.jpg.jpg" alt="Bade'e Al Oud (Noble Blush)">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Lattafa — Bade'e Al Oud (Noble Blush)</div>
@@ -218,10 +324,11 @@
             </div>
 
             <!-- 2 -->
-            <div class="card" data-name="tommy hilfiger tommy girl dama">
+            <div class="card" data-name="tommy hilfiger tommy girl dama" data-category="dama">
                 <div class="card-img-container">
                     <span class="badge">Dama</span>
-                    <img src="Tommy Hilfiger.jpg.jpg" alt="Tommy Girl" onerror="tryLoadImage(this, ['Tommy Hilfiger.jpg', 'tommyhilfiger.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Tommy Hilfiger.jpg.jpg" alt="Tommy Girl">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Tommy Hilfiger — Tommy Girl</div>
@@ -235,10 +342,11 @@
             </div>
 
             <!-- 3 -->
-            <div class="card" data-name="antonio banderas blue seduction para women dama">
+            <div class="card" data-name="antonio banderas blue seduction para women dama" data-category="dama">
                 <div class="card-img-container">
-                    <span class="badge">Dama (Edición XL 200 ml)</span>
-                    <img src="AntonioBanderas.jpg" alt="Blue Seduction For Women" onerror="tryLoadImage(this, ['AntonioBanderas.jpg.jpg', 'antoniobanderas.jpg'])">
+                    <span class="badge">Dama (XL 200 ml)</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="AntonioBanderas.jpg" alt="Blue Seduction For Women">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Antonio Banderas — Blue Seduction (For Women)</div>
@@ -252,10 +360,11 @@
             </div>
 
             <!-- 4 -->
-            <div class="card" data-name="rasasi hawas for her diva dama">
+            <div class="card" data-name="rasasi hawas for her diva dama" data-category="dama">
                 <div class="card-img-container">
                     <span class="badge">Dama</span>
-                    <img src="Rasasi.jpg.jpg" alt="Hawas For Her" onerror="tryLoadImage(this, ['Rasasi.jpg', 'rasasi.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Rasasi.jpg.jpg" alt="Hawas For Her">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Rasasi — Hawas For Her (Diva)</div>
@@ -269,10 +378,11 @@
             </div>
 
             <!-- 5 -->
-            <div class="card" data-name="lattafa yara candy larady dama">
+            <div class="card" data-name="lattafa yara candy larady dama" data-category="dama">
                 <div class="card-img-container">
                     <span class="badge">Dama</span>
-                    <img src="Yara Candy.jpg.jpg" alt="Yara Candy" onerror="tryLoadImage(this, ['Yara Candy.jpg', 'yaracandy.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Yara Candy.jpg.jpg" alt="Yara Candy">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Lattafa — Yara (Candy / Larady)</div>
@@ -286,10 +396,11 @@
             </div>
 
             <!-- 6 -->
-            <div class="card" data-name="maison alhambra lattafa karat unisex">
+            <div class="card" data-name="maison alhambra lattafa karat unisex" data-category="unisex">
                 <div class="card-img-container">
                     <span class="badge">Dama / Unisex</span>
-                    <img src="Maison.jpg.jpg" alt="Karat" onerror="tryLoadImage(this, ['Maison.jpg', 'maison.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Maison.jpg.jpg" alt="Karat">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Maison Alhambra / Lattafa — Karat</div>
@@ -303,10 +414,11 @@
             </div>
 
             <!-- 7 -->
-            <div class="card" data-name="cacharel paris amor amor dama">
+            <div class="card" data-name="cacharel paris amor amor dama" data-category="dama">
                 <div class="card-img-container">
                     <span class="badge">Dama</span>
-                    <img src="Cacharel.jpg" alt="Amor Amor" onerror="tryLoadImage(this, ['Cacharel.jpg.jpg', 'cacharel.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Cacharel.jpg" alt="Amor Amor">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Cacharel Paris — Amor Amor</div>
@@ -320,10 +432,11 @@
             </div>
 
             <!-- 8 -->
-            <div class="card" data-name="armaf voyage hawaii dama">
+            <div class="card" data-name="armaf voyage hawaii dama" data-category="dama">
                 <div class="card-img-container">
                     <span class="badge">Dama</span>
-                    <img src="Armaf.jpg.jpg" alt="Voyage Hawaii" onerror="tryLoadImage(this, ['Armaf.jpg', 'armaf.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Armaf.jpg.jpg" alt="Voyage Hawaii">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Armaf — Voyage Hawaii</div>
@@ -337,10 +450,11 @@
             </div>
 
             <!-- 9 -->
-            <div class="card" data-name="lattafa musamam white intense">
+            <div class="card" data-name="lattafa musamam white intense" data-category="unisex">
                 <div class="card-img-container">
                     <span class="badge">Dama / Unisex</span>
-                    <img src="Musamam.jpg.jpg" alt="Musamam White Intense" onerror="tryLoadImage(this, ['Musamam.jpg', 'musamam.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="Musamam.jpg.jpg" alt="Musamam White Intense">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Lattafa — Musamam White Intense</div>
@@ -354,10 +468,11 @@
             </div>
 
             <!-- 10 -->
-            <div class="card" data-name="club de nuit untold armaf unisex">
+            <div class="card" data-name="club de nuit untold armaf unisex" data-category="unisex">
                 <div class="card-img-container">
                     <span class="badge">Unisex</span>
-                    <img src="clubdenuit.jpg" alt="Club de Nuit Untold" onerror="tryLoadImage(this, ['clubdenuit.jpg.jpg', 'ClubdeNuit.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="clubdenuit.jpg" alt="Club de Nuit Untold">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Club de Nuit Untold</div>
@@ -371,10 +486,11 @@
             </div>
 
             <!-- 11 -->
-            <div class="card" data-name="odyssey homme armaf caballero">
+            <div class="card" data-name="odyssey homme armaf caballero" data-category="caballero">
                 <div class="card-img-container">
                     <span class="badge">Caballero</span>
-                    <img src="odyssey.jpg" alt="Odyssey Homme" onerror="tryLoadImage(this, ['Odyssey.jpg.jpg', 'Odyssey.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="odyssey.jpg" alt="Odyssey Homme">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Odyssey Homme</div>
@@ -388,10 +504,11 @@
             </div>
 
             <!-- 12 -->
-            <div class="card" data-name="nautica voyage nautica caballero">
+            <div class="card" data-name="nautica voyage nautica caballero" data-category="caballero">
                 <div class="card-img-container">
                     <span class="badge">Caballero</span>
-                    <img src="nautica.jpg" alt="Nautica Voyage" onerror="tryLoadImage(this, ['nautica.jpg.jpg', 'Nautica.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="nautica.jpg" alt="Nautica Voyage">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Nautica Voyage</div>
@@ -405,10 +522,11 @@
             </div>
 
             <!-- 13 -->
-            <div class="card" data-name="colors man black intenso benetton caballero">
+            <div class="card" data-name="colors man black intenso benetton caballero" data-category="caballero">
                 <div class="card-img-container">
                     <span class="badge">Caballero</span>
-                    <img src="benetton.jpg" alt="Colors Man Black Intenso" onerror="tryLoadImage(this, ['benetton.jpg.jpg', 'Benetton.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="benetton.jpg" alt="Colors Man Black Intenso">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Colors Man Black Intenso</div>
@@ -422,10 +540,11 @@
             </div>
 
             <!-- 14 -->
-            <div class="card" data-name="odyssey mandarin sky armaf caballero">
+            <div class="card" data-name="odyssey mandarin sky armaf caballero" data-category="caballero">
                 <div class="card-img-container">
                     <span class="badge">Caballero</span>
-                    <img src="mandarin.jpg" alt="Odyssey Mandarin Sky" onerror="tryLoadImage(this, ['mandarin.jpg.jpg', 'Mandarin.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="mandarin.jpg" alt="Odyssey Mandarin Sky">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Odyssey Mandarin Sky</div>
@@ -439,10 +558,11 @@
             </div>
 
             <!-- 15 -->
-            <div class="card" data-name="italiano nero uomo armaf caballero">
+            <div class="card" data-name="italiano nero uomo armaf caballero" data-category="caballero">
                 <div class="card-img-container">
                     <span class="badge">Caballero</span>
-                    <img src="italiano.jpg" alt="Italiano Nero Uomo" onerror="tryLoadImage(this, ['italiano.jpg.jpg', 'Italiano.jpg'])">
+                    <span class="badge-original">100% Original</span>
+                    <img src="italiano.jpg" alt="Italiano Nero Uomo">
                 </div>
                 <div class="card-content">
                     <div class="perfume-name">Italiano Nero Uomo</div>
@@ -455,4 +575,158 @@
                 </div>
             </div>
 
-            <!-- 1
+            <!-- 16 -->
+            <div class="card" data-name="the secret antonio banderas caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="thesecret.jpg" alt="The Secret">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">The Secret</div>
+                    <div class="perfume-brand">Antonio Banderas</div>
+                    <div class="perfume-desc">Menta verde, pomelo y bergamota con licor de manzana, cardamomo, canela, cuero y haba tonka.</div>
+                    <div class="card-footer">
+                        <div class="price">$40</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20The%20Secret%20($40)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card" data-name="the icon antonio banderas caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="theicon.jpg" alt="The Icon">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">The Icon</div>
+                    <div class="perfume-brand">Antonio Banderas</div>
+                    <div class="perfume-desc">Pomelo y pimienta negra con corazón aromático de lavanda y salvia, sobre base elegante de sándalo y musgo.</div>
+                    <div class="card-footer">
+                        <div class="price">$43</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20The%20Icon%20($43)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card" data-name="el cielo pour homme armaf caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="elcielo.jpg" alt="El Cielo Pour Homme">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">El Cielo Pour Homme</div>
+                    <div class="perfume-brand">Armaf</div>
+                    <div class="perfume-desc">Manzana, bergamota, limón y melón con lavanda y violeta, asentado sobre base cálida de vainilla y ámbar.</div>
+                    <div class="card-footer">
+                        <div class="price">$36</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20El%20Cielo%20Pour%20Homme%20($36)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card" data-name="hawas for him malibu rasasi caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="malibu.jpg" alt="Hawas For Him Malibu">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">Hawas For Him Malibu</div>
+                    <div class="perfume-brand">Rasasi</div>
+                    <div class="perfume-desc">Salida de notas cítricas y brisa marina, corazón aromático y frutal sobre maderas finas y ámbar.</div>
+                    <div class="card-footer">
+                        <div class="price">$70</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20Hawas%20For%20Him%20Malibu%20($70)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card" data-name="tommy tommy hilfiger caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="tommy.jpg" alt="Tommy Hilfiger">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">Tommy</div>
+                    <div class="perfume-brand">Tommy Hilfiger</div>
+                    <div class="perfume-desc">Menta, lavanda y pomelo con manzana verde y arándano, asentado sobre base de flor del algodonero y cactus.</div>
+                    <div class="card-footer">
+                        <div class="price">$52</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20Tommy%20Hilfiger%20($52)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card" data-name="bharara king bharara caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="bharara.jpg" alt="Bharara King">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">Bharara King</div>
+                    <div class="perfume-brand">Bharara</div>
+                    <div class="perfume-desc">Bergamota, limón y naranja con corazón cremoso y una base opulenta de ámbar, almizcle blanco y vainilla.</div>
+                    <div class="card-footer">
+                        <div class="price">$75</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20Bharara%20King%20($75)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card" data-name="hayaati lattafa caballero unisex" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero / Unisex</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="hayaati.jpg" alt="Hayaati">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">Hayaati</div>
+                    <div class="perfume-brand">Lattafa Perfumes</div>
+                    <div class="perfume-desc">Manzana y nuez moscada con canela y notas amaderadas, sobre una base persistente de ámbar y vainilla.</div>
+                    <div class="card-footer">
+                        <div class="price">$34</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20Hayaati%20($34)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card" data-name="halloween man rock on halloween caballero" data-category="caballero">
+                <div class="card-img-container">
+                    <span class="badge">Caballero</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="halloween.jpg.jpg" alt="Halloween Man Rock On">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">Halloween Man Rock On</div>
+                    <div class="perfume-brand">Halloween</div>
+                    <div class="perfume-desc">Pimienta roja, bambú y limón con corazón aromático de manzana roja, lavanda y romero. Estilo juvenil y urbano.</div>
+                    <div class="card-footer">
+                        <div class="price">$48</div>
+                        <a href="https://wa.me/?text=Hola,%20me%20interesa%20el%20perfume%20Halloween%20Man%20Rock%20On%20($48)" target="_blank" class="btn-whatsapp">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card" data-name="armaf beach party armaf unisex" data-category="unisex">
+                <div class="card-img-container">
+                    <span class="badge">Unisex</span>
+                    <span class="badge-original">100% Original</span>
+                    <img src="Party.jpg.jpg" alt="Armaf Beach Party">
+                </div>
+                <div class="card-content">
+                    <div class="perfume-name">Armaf Beach Party</div>
+                    <div class="perfume-brand">Armaf</div>
+                    <div class="perfume-desc">Notas cítricas y acuáticas con toques dulce-tropicales y amaderados. Ideal para eventos al aire libre y
